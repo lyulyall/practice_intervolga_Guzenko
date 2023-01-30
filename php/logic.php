@@ -2,26 +2,61 @@
 require_once 'db.php';
 
 
-$sql = "SELECT grades.id, grades.grade, subjects.subject_name as 'subject', students.surname as 'surname', students.name as 'name'
+
+function allStudents()
+{
+	$sql= "SELECT * FROM `students`";
+
+	$pdo = dbconnect();
+	$query = $pdo->prepare($sql);
+	$query->execute();
+	$data = $query->fetchAll(PDO::FETCH_ASSOC);
+
+	return $data;
+}
+
+function rating($stud_id)
+{
+	$sql = "SELECT grades.grade, subjects.subject_name as 'subject', students.surname as 'surname', 
+students.name as 'name'
     FROM `grades`
-    JOIN `subjects` ON grades.subject_id=subjects.id JOIN `students` ON grades.student_id=students.id";
+    JOIN `subjects` ON grades.subject_id=subjects.id JOIN `students` ON grades.student_id=students.id 
+    WHERE students.id=grades.student_id ORDER BY grades.subject_id ";
 
-$pdo = DBConnect();
-$query = $pdo->prepare($sql)->execute();
-$data = $pdo->query($sql)->fetchAll(PDO::FETCH_ASSOC);
+	$pdo = dbconnect();
+	$query = $pdo->prepare($sql);
+	$query->execute();
+	$dataRating = $query->fetchAll(PDO::FETCH_ASSOC);
+
+	return $dataRating;
+}
+
+function grades()
+{
+	$sql = "SELECT grades.grade, subjects.subject_name as 'subject', students.surname as 'surname',
+ students.name as 'name'
+    FROM `grades`
+    JOIN `subjects` ON grades.subject_id=subjects.id JOIN `students` ON grades.student_id=students.id ";
+
+	$pdo = dbconnect();
+	$query = $pdo->prepare($sql);
+	$query->execute();
+	$dataGrade = $query->fetchAll(PDO::FETCH_ASSOC);
+
+	return $dataGrade;
+}
 
 
+function allSubjects()
+{
+	$sqlSubj = "SELECT * FROM `subjects` ORDER BY subjects.id ";
 
-$sqlStud = "SELECT students.id, students.surname, students.name FROM `students`";
+	$pdo = dbconnect();
+	$querySubj = $pdo -> prepare($sqlSubj);
+	$querySubj -> execute();
+	$dataSubj = $querySubj -> fetchAll(PDO::FETCH_ASSOC);
 
-$queryStud = $pdo->prepare($sqlStud)->execute();
-$dataStud = $pdo->query($sqlStud)->fetchAll(PDO::FETCH_ASSOC);
-
-
-$sqlSubj = "SELECT subjects.id, subjects.subject_name FROM `subjects`";
-
-$querySubj = $pdo->prepare($sqlSubj)->execute();
-$dataSubj = $pdo->query($sqlSubj)->fetchAll(PDO::FETCH_ASSOC);
-
+	return $dataSubj;
+}
 
 ?>

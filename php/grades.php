@@ -6,6 +6,7 @@ require_once 'db.php';
 
 <!--Оценки-->
 <div class="container">
+	<?php $data=grades(); ?>
 	<?php if (count($data) > 0): ?>
 		<table class="table table-bordered table-sm">
 			<thead>
@@ -27,7 +28,7 @@ require_once 'db.php';
                         <td>
                             <form action="" method="get">
                                 <button type="submit" class="btn btn-primary" name="changeGrade"
-                                    value="<?= $item['id'] ?>">Изменить
+                                    value="">Изменить
                                 </button>
                             </form>
                         </td>

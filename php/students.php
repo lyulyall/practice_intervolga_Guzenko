@@ -6,7 +6,8 @@ require_once 'db.php';
 
  <!--Студенты-->
 <div class="container">
-	<?php if (count($dataStud) > 0): ?>
+	<?php $data=allStudents(); ?>
+	<?php if (count($data) > 0): ?>
         <table class="table table-sm table-bordered tableSt">
             <tr>
                 <th scope="col">Студенты</th>
@@ -14,7 +15,7 @@ require_once 'db.php';
             </tr>
 
             <tr>
-				<?php foreach ($dataStud as $item): ?>
+				<?php foreach ($data as $item): ?>
                     <tr>
                         <td><?= $item['surname']?> <?= $item['name']?></td>
                         <td>

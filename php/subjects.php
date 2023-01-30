@@ -5,7 +5,8 @@ require_once 'db.php';
 ?>
 <!--Предметы-->
 <div class="container">
-	<?php if (count($dataSubj) > 0): ?>
+	<?php $data=allSubjects(); ?>
+	<?php if (count($data) > 0): ?>
         <table class="table table-bordered table-sm">
             <thead>
                 <tr>
@@ -16,7 +17,7 @@ require_once 'db.php';
 
             <tbody>
                 <tr>
-				    <?php foreach ($dataSubj as $item): ?>
+				    <?php foreach ($data as $item): ?>
                         <tr>
                             <td><?= $item['subject_name']?> </td>
                             <td>

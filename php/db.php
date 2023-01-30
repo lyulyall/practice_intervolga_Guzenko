@@ -1,5 +1,5 @@
 <?php
-function DBConnect()
+function dbconnect()
 {
 	$dsn = 'mysql:host=localhost;dbname=student_rating';
 	$user = 'root';
