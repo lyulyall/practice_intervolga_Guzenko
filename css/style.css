@@ -1,0 +1,25 @@
+header{
+    background-color: #382759;
+    font-family: Georgia, serif;
+    padding: 1%;
+}
+
+.header_text{
+    color: rgb(160, 160, 185);
+    text-decoration: none;}
+.header_text:hover {
+    text-decoration-line: underline;
+    color: rgb(139, 139, 161);
+}
+
+.logo{
+    width: 5%;
+}
+
+.tableSt{
+    width: 50%!important;
+}
+
+table{
+    margin-top: 2%;
+}
