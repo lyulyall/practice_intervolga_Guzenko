@@ -9,4 +9,3 @@ function DBConnect()
 	return $pdo;
 }
 
-$pdo = DBConnect();
