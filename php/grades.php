@@ -11,6 +11,7 @@ require_once 'db.php';
 		<table class="table table-bordered table-sm">
 			<thead>
 			<tr>
+                <th scope="col">id</th>
 				<th scope="col">Cтуденты</th>
 				<th scope="col">Предмет</th>
 				<th scope="col"'">Баллы</th>
@@ -22,6 +23,7 @@ require_once 'db.php';
 			<tr class="small_top_margin">
 				<?php foreach ($data as $item): ?>
 			        <tr>
+                        <td><?= $item['id']?></td>
 				        <td><?= $item['surname'],' ', $item['name']?></td>
 				        <td> <?= $item['subject']?> </td>
 				        <td><?= $item['grade']?></td>

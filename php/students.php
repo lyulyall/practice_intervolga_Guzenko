@@ -10,6 +10,7 @@ require_once 'db.php';
 	<?php if (count($data) > 0): ?>
         <table class="table table-sm table-bordered tableSt">
             <tr>
+                <th scope="col">id</th>
                 <th scope="col">Студенты</th>
                 <th scope="col">Действия</th>
             </tr>
@@ -17,6 +18,7 @@ require_once 'db.php';
             <tr>
 				<?php foreach ($data as $item): ?>
                     <tr>
+                        <td><?= $item['id']?></td>
                         <td><?= $item['surname']?> <?= $item['name']?></td>
                         <td>
                             <form action="" method="get">
@@ -30,5 +32,8 @@ require_once 'db.php';
 
             </tbody>
         </table>
+
+
+
 	<?php endif; ?>
 </div>

@@ -10,6 +10,7 @@ require_once 'db.php';
         <table class="table table-bordered table-sm">
             <thead>
                 <tr>
+                    <th scope="col">id</th>
                     <th scope="col">Предметы</th>
                     <th scope="col">Действия</th>
                 </tr>
@@ -19,6 +20,7 @@ require_once 'db.php';
                 <tr>
 				    <?php foreach ($data as $item): ?>
                         <tr>
+                            <td><?= $item['id']?></td>
                             <td><?= $item['subject_name']?> </td>
                             <td>
                                 <form action="" method="get">
