@@ -29,32 +29,39 @@ require_once 'db.php';
         </ul>
     </div>
 
-    <?php $data=allStudents(); ?>
-    <?php if (count($data) > 0): ?>
-	    <table class="table table-bordered">
-		    <thead>
-		    <tr>
-			    <th class="scope">Cтуденты</th>
-				<?php $subj=allSubjects(); ?>
-			    <?php foreach ($subj as $item): ?>
-				    <th> <?= $item['subject_name']?> </th>
-			    <?php endforeach; ?>
-            </tr>
-		    </thead>
-		    <tbody>
-				<?php foreach ($data as $item): ?>
-                    <tr>
-						<?php $rat=rating($item['id']); ?>
-                        <th> <?= $item['surname']?> <?= $item['name']?></th>
-                        <?php foreach ($rat as $item2): ?>
-                            <td> <?= $item2['grade']?> </td>
-                        <?php endforeach; ?>
-
-                    </tr>
+	<?php $students=allStudents(); ?>
+	<?php if (count($students) > 0): ?>
+        <table class="table table-bordered">
+            <thead>
+            <tr>
+                <th class="scope">Cтуденты</th>
+				<?php $subjects=allSubjects(); ?>
+				<?php foreach ($subjects as $subj): ?>
+                    <th> <?= $subj['subject_name']?> </th>
 				<?php endforeach; ?>
+            </tr>
+            </thead>
+
+            <tbody>
+
+			<?php foreach ($students as $stud): ?>
+                <tr>
+
+                    <th> <?= $stud['surname']?> <?= $stud['name']?></th>
+
+				    <?php foreach ($subjects as $subj): ?>
+					<?php $rating=rating($stud['id'],  $subj['id']); ?>
+
+					<?php foreach ($rating as $rat): ?>
+                        <td> <?= $rat['grade']?> </td>
+					<?php endforeach; ?>
+
+                </tr>
+			<?php endforeach; ?>
+			<?php endforeach; ?>
             </tbody>
-	    </table>
-    <?php endif; ?>
+        </table>
+	<?php endif; ?>
 
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
             integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"

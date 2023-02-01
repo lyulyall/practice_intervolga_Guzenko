@@ -23,7 +23,7 @@ require_once 'db.php';
                             <td><?= $item['id']?></td>
                             <td><?= $item['subject_name']?> </td>
                             <td>
-                                <form action="" method="get">
+                                <form action="" method="post">
                                     <button type="submit" class="btn btn-primary" name="changeSubj"
                                         value="<?= $item['id'] ?>">Изменить
                                     </button>

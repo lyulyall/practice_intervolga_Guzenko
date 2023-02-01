@@ -9,7 +9,7 @@ require_once 'php/header.php';
     <div> Структура базы данных:</div>
 
     <div>
-        <a><img src="/practice_intervolga/img/bd.png" class="indexImg"></a>
+        <a><img src="/practice_intervolga/img/bd.png" class="center"></a>
     </div>
 </div>
 

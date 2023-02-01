@@ -18,7 +18,7 @@ function allStudents()
 	return getData($sql);
 }
 
-function rating($stud_id)
+function rating($stud_id, $subj_id)
 {
 	$sql = "SELECT grades.grade, subjects.subject_name as 'subject',  students.id
     FROM `grades`

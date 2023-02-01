@@ -28,7 +28,7 @@ require_once 'db.php';
 				        <td> <?= $item['subject']?> </td>
 				        <td><?= $item['grade']?></td>
                         <td>
-                            <form action="" method="get">
+                            <form action="" method="post">
                                 <button type="submit" class="btn btn-primary" name="changeGrade"
                                     value="">Изменить
                                 </button>
