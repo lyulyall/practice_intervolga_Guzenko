@@ -43,21 +43,14 @@ require_once 'db.php';
             </thead>
 
             <tbody>
-
 			<?php foreach ($students as $stud): ?>
                 <tr>
-
                     <th> <?= $stud['surname']?> <?= $stud['name']?></th>
-
-				    <?php foreach ($subjects as $subj): ?>
 					<?php $rating=rating($stud['id'],  $subj['id']); ?>
-
 					<?php foreach ($rating as $rat): ?>
                         <td> <?= $rat['grade']?> </td>
 					<?php endforeach; ?>
-
                 </tr>
-			<?php endforeach; ?>
 			<?php endforeach; ?>
             </tbody>
         </table>
