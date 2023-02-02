@@ -13,6 +13,10 @@ class GradesTable
 				$serv['subjectId'] = htmlspecialchars($_POST['subjectId']);
 				$serv['studentId'] = htmlspecialchars($_POST['studentId']);
 				$sql = "INSERT INTO `grades` (`grade`, `subject_id`, `student_id`) VALUES (:grade, :subjectId, :studentId)";
+<<<<<<< HEAD
+=======
+
+>>>>>>> 3e622ee (Рабочее добавление во все таблицы, но возникает ошибка "cannot modify header information headers already sent by" во всех таблицах, кроме groups)
 				$pdo = dbconnect();
 				$stmt = $pdo->prepare($sql);
 				$stmt->execute($serv);
