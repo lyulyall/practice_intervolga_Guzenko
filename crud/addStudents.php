@@ -1,6 +1,7 @@
 <?php
 include '../php/header.php';
 require_once '../php/students.php';
+require_once 'studentsLogic.php';
 $groupList = StudentTable::getItemsFromDBTable('groups');
 StudentTable::addStudent();
 ?>
@@ -11,7 +12,7 @@ StudentTable::addStudent();
 
 
 <div class="container w-25 small_top_margin add_us forms">
-    <form action="/practice_intervolga/crud/studentsLogic.php" method="post">
+    <form method="post">
         <a href="/practice_intervolga/php/students.php" class=" close">&times;</a>
         <div class="row"><div class="col text-center"><h2>Добавить студента</h2></div></div>
         <div class="col-sm-6">
@@ -25,14 +26,14 @@ StudentTable::addStudent();
         </div>
 
         <div class="col-md-6 py-4">
-            <select name="group_id " class="form-select">
-                <option selected value="">Группа: </option>
+            <select required name="group_id" class="form-select">
+                <option >Выберите группу</option>
 				<?php foreach ($groupList as $item): ?>
                     <option value="<?= $item['id'] ?>"><?= $item['specialty'] ?></option>
 				<?php endforeach; ?>
             </select>
         </div>
 
-        <button type="submit" class="btn btn-success" name="addSt">  Добавить</button>
+        <button type="submit" class="btn btn-success" name="addStudent"> Добавить</button>
     </form>
 </div>

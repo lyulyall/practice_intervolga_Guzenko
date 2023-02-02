@@ -97,6 +97,7 @@ table{
 
 .forms{
     background-color: white;
+    margin-left: 70%;
     padding: 20px 120px 30px 120px;
     position: fixed;
     border-radius: 10px;
