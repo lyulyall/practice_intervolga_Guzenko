@@ -6,8 +6,12 @@ require_once 'db.php';
 
 <!--Оценки-->
 <div class="container">
-	<?php $data=grades(); ?>
-	<?php if (count($data) > 0): ?>
+
+    <a class="center" href="/practice_intervolga/crud/addGrades.php"><button class="btn btn-success">
+            +</button>
+    </a>
+	<?php $gradesList=grades(); ?>
+	<?php if (count($gradesList) > 0): ?>
 		<table class="table table-bordered table-sm">
 			<thead>
 			<tr>
@@ -21,7 +25,7 @@ require_once 'db.php';
 
 			<tbody>
 			<tr class="small_top_margin">
-				<?php foreach ($data as $item): ?>
+				<?php foreach ($gradesList as $item): ?>
 			        <tr>
                         <td><?= $item['id']?></td>
 				        <td><?= $item['surname'],' ', $item['name']?></td>

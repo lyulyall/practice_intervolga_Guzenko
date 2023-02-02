@@ -30,8 +30,8 @@ function rating($stud_id, $subj_id)
 }
 function grades()
 {
-	$sql = "SELECT grades.grade, subjects.subject_name as 'subject', students.surname as 'surname', students.id,
- students.name as 'name'
+	$sql = "SELECT grades.grade, subjects.subject_name as 'subject', students.surname, students.id,
+ students.name
     FROM `grades`
     JOIN `subjects` ON grades.subject_id=subjects.id JOIN `students` ON grades.student_id=students.id ";
 

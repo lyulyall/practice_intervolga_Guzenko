@@ -1,7 +1,7 @@
 <?php
 include '../php/header.php';
-require_once '../php/students.php';
 require_once 'studentsLogic.php';
+require_once '../php/students.php';
 $groupList = StudentTable::getItemsFromDBTable('groups');
 StudentTable::addStudent();
 ?>
@@ -27,9 +27,9 @@ StudentTable::addStudent();
 
         <div class="col-md-6 py-4">
             <select required name="group_id" class="form-select">
-                <option >Выберите группу</option>
+                <option>Выберите группу</option>
 				<?php foreach ($groupList as $item): ?>
-                    <option value="<?= $item['id'] ?>"><?= $item['specialty'] ?></option>
+                    <option value="<?= $item['id'] ?>"> <?= $item['specialty']?> </option>
 				<?php endforeach; ?>
             </select>
         </div>

@@ -15,7 +15,8 @@
 				<a href="/practice_intervolga/index.php" type="button"><img src="/practice_intervolga/img/icon.png" class="logo"></a>
 			</div>
 			<a href="/practice_intervolga/php/rating.php" class="col-md-auto header_text" type="button">Рейтинг</a>
-			<a href="/practice_intervolga/php/students.php" class="col-md-auto header_text" type="button">Студенты</a>
+            <a href="/practice_intervolga/php/groups.php" class="col-md-auto header_text" type="button">Группы</a>
+            <a href="/practice_intervolga/php/students.php" class="col-md-auto header_text" type="button">Студенты</a>
 			<a href="/practice_intervolga/php/subjects.php" class="col-md-auto header_text" type="button">Предметы</a>
 			<a href="/practice_intervolga/php/grades.php" class="col-md-auto header_text" type="button">Оценки</a>
 		</div>
