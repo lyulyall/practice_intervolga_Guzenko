@@ -1,6 +1,6 @@
 <?php
 require_once '../crud/subjectsLogic.php';
-require_once 'header.php';
+include 'header.php';
 require_once 'logic.php';
 require_once 'db.php';
 $subjectsList = SubjectsTable::getItemsFromDBTable('subjects');
@@ -41,3 +41,5 @@ $subjectsList = SubjectsTable::getItemsFromDBTable('subjects');
         </table>
 	<?php endif;?>
 </div>
+
+<?php include 'footer.php'; ?>

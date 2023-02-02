@@ -1,5 +1,5 @@
 <?php
-require_once 'header.php';
+include 'header.php';
 require_once 'logic.php';
 require_once 'db.php';
 ?>
@@ -45,3 +45,5 @@ require_once 'db.php';
         </table>
 	<?php endif; ?>
 </div>
+
+<?php include 'footer.php'; ?>

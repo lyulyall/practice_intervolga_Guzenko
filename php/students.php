@@ -8,7 +8,7 @@ $studentsList = StudentTable::getItemsFromDBTable('students');
 
  <!--Студенты-->
 <div class="container">
-    <a class="center" href="/practice_intervolga/crud/addGrades.php"><button class="btn btn-success">
+    <a class="center" href="/practice_intervolga/crud/addStudents.php"><button class="btn btn-success">
             +</button>
     </a>
 	<?php if (count($studentsList) > 0):?>
@@ -39,3 +39,5 @@ $studentsList = StudentTable::getItemsFromDBTable('students');
         </table>
 	<?php endif;?>
 </div>
+
+<?php include 'footer.php'; ?>

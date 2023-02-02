@@ -1,6 +1,6 @@
 <?php
 require_once '../crud/studentsLogic.php';
-require_once 'header.php';
+include 'header.php';
 require_once 'logic.php';
 require_once 'db.php';
 $groupList = StudentTable::getItemsFromDBTable('groups');
@@ -41,3 +41,5 @@ $groupList = StudentTable::getItemsFromDBTable('groups');
         </table>
 	<?php endif;?>
 </div>
+
+<?php include 'footer.php'; ?>
