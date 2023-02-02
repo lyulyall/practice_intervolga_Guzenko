@@ -9,7 +9,7 @@ $groupList = StudentTable::getItemsFromDBTable('groups');
 <!--Группы-->
 <div class="container">
     <a class="center" href="/practice_intervolga/crud/addGroups.php"><button class="btn btn-success">
-            Добавить группу</button>
+            +</button>
     </a>
 	<?php if (count($groupList) > 0):?>
         <table class="table table-sm table-bordered tableSt">

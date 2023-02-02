@@ -9,7 +9,7 @@ $subjectsList = SubjectsTable::getItemsFromDBTable('subjects');
 <!--Предметы-->
 <div class="container">
     <a class="center" href="/practice_intervolga/crud/addSubjects.php"><button class="btn btn-success">
-            Добавить предмет</button>
+            +</button>
     </a>
 	<?php if (count($subjectsList) > 0):?>
         <table class="table table-bordered table-sm">

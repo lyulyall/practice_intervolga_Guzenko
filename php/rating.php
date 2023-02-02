@@ -2,13 +2,14 @@
 require_once 'header.php';
 require_once 'logic.php';
 require_once 'db.php';
+$groups = allData('groups');
+$students = allData('students');
 ?>
 
 <!--Рейтинг-->
 <div class="container">
 
     <!-- Выбор группы их выпадающего списка-->
-	<?php $groups=allGroups(); ?>
     <div class="dropdownbutton" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-expanded="false">
         <div class="row justify-content-berween" role="button">
             <div class="col-md-auto title">Выберите группу... </div>
@@ -29,7 +30,6 @@ require_once 'db.php';
         </ul>
     </div>
 
-	<?php $students=allStudents(); ?>
 	<?php if (count($students) > 0): ?>
         <table class="table table-bordered">
             <thead>

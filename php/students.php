@@ -9,7 +9,7 @@ $studentsList = StudentTable::getItemsFromDBTable('students');
  <!--Студенты-->
 <div class="container">
     <a class="center" href="/practice_intervolga/crud/addGrades.php"><button class="btn btn-success">
-            Добавить студента</button>
+            +</button>
     </a>
 	<?php if (count($studentsList) > 0):?>
         <table class="table table-sm table-bordered tableSt">

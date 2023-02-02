@@ -11,12 +11,6 @@ function getData($sql)
 	return $result;
 }
 
-function allStudents()
-{
-	$sql= "SELECT * FROM `students`";
-
-	return getData($sql);
-}
 
 function rating($stud_id, $subj_id)
 {
@@ -46,9 +40,9 @@ function allSubjects()
 	return getData($sql);
 }
 
-function allGroups()
+function allData($table)
 {
-	$sql = "SELECT * FROM `groups`";
+	$sql = "SELECT * FROM $table";
 
 	return getData($sql);
 }
