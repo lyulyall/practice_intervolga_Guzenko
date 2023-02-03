@@ -4,7 +4,7 @@ include 'php/header.php';
 
 <body>
 
-<div class="container">
+<div class="container main">
 
     <div> Структура базы данных:</div>
 

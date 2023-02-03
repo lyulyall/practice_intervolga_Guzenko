@@ -10,7 +10,7 @@
 
 <header>
 
-		<div class="row justify-content-berween">
+		<div class="row">
 			<div class="col-md-auto">
 				<a href="/practice_intervolga/index.php" type="button"><img src="/practice_intervolga/img/icon.png" class="logo"></a>
 			</div>

@@ -1,18 +1,49 @@
 <?php
-require_once '../crud/studentsLogic.php';
 include 'header.php';
 require_once 'logic.php';
 require_once 'db.php';
-$groupList = StudentTable::getItemsFromDBTable('groups');
+require_once '../crud/groupsLogic.php';
+$groupList = GroupsTable::getItemsFromDBTable('groups');
+GroupsTable::addGroups();
 ?>
 
 <!--Группы-->
-<div class="container">
-    <a class="center" href="/practice_intervolga/crud/addGroups.php"><button class="btn btn-success">
-            +</button>
-    </a>
+<div class="container main">
+
+    <!-- Button trigger modal -->
+    <div class="row mt-3">
+        <div class="col-12 center">
+            <button type="button" class="btn btn-success" data-toggle="modal" data-target="#exampleModal">+</button>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <form method="post">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Добавить группу</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <label for="specialty" class="form-label">Название</label>
+                        <input type="text" class="form-control" id="specialty" name="specialty" required>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary" name="addGroups">Добавить</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+
+
+
 	<?php if (count($groupList) > 0):?>
-        <table class="table table-sm table-bordered tableSt">
+        <table class="table table-sm table-striped table-bordered tableSt">
             <thead>
                 <tr>
                     <th scope="col">id</th>
