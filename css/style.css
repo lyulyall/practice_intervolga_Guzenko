@@ -52,17 +52,8 @@ table{
     text-align: center
 }
 
-.dropdownbutton{
-    margin-top: 2%!important;
-    text-decoration: none!important;;
+.dropdown{
     width: 30%;
-    border-style: solid;
-    border-width: 2px;
-    border-color: #382759;
-    border-radius: 3px;
-    color: black;
-    background-color: white!important;
-    padding: 1%;
 }
 
 .center{

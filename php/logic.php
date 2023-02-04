@@ -11,17 +11,6 @@ function getData($sql)
 	return $result;
 }
 
-
-function rating($stud_id, $subj_id)
-{
-	$sql = "SELECT grades.grade, subjects.subject_name as 'subject',  students.id
-    FROM `grades`
-    JOIN `subjects` ON grades.subject_id=subjects.id JOIN `students` ON grades.student_id=students.id
-    WHERE grades.student_id=$stud_id
- 	ORDER BY students.id, subjects.id ";
-
-	return getData($sql);
-}
 function grades()
 {
 	$sql = "SELECT grades.grade, subjects.subject_name as 'subject', students.surname, students.id,
@@ -43,6 +32,24 @@ function allSubjects()
 function allData($table)
 {
 	$sql = "SELECT * FROM $table";
+
+	return getData($sql);
+}
+
+function ratingGroupGrades($stud_id, $group)
+{
+	$sql = "SELECT grades.grade, subjects.subject_name as 'subject',  students.id, students.name, students.surname
+    FROM `grades`
+    JOIN `subjects` ON grades.subject_id=subjects.id JOIN `students` ON grades.student_id=students.id
+    WHERE students.group_id=$group AND grades.student_id=$stud_id 
+ 	ORDER BY students.id, subjects.id ";
+
+	return getData($sql);
+}
+
+function ratingGroupStudents($group)
+{
+	$sql = "SELECT * FROM `students` WHERE students.group_id=$group";
 
 	return getData($sql);
 }
