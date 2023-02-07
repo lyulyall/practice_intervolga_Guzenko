@@ -1,5 +1,4 @@
 <?php
-
 require_once 'db.php';
 
 function getData($sql)
@@ -14,27 +13,27 @@ function getData($sql)
 
 function grades()
 {
-	$sql = "SELECT grades.grade, subjects.subject_name as 'subject', subjects.id as 'subject_id', students.surname, students.id,
- students.name
-    FROM `grades`
-    JOIN `subjects` ON grades.subject_id=subjects.id JOIN `students` ON grades.student_id=students.id ";
+	$sql = "SELECT grades.id, grades.grade, subjects.id as 'subject_id', subjects.subject_name as 'subject', 
+			students.surname, students.id as 'student_id', students.name
+    		FROM `grades`
+    		JOIN `subjects` ON grades.subject_id=subjects.id JOIN `students` ON grades.student_id=students.id";
 
 	return getData($sql);
 }
 
-
-function getStudents()
-{
-	$sql = "SELECT  students.id, students.surname, students.name, groups.id as 'group_id', groups.specialty
-    		FROM `students`
-   			JOIN `groups` ON groups.id=students.group_id ORDER BY students.id";
-
-	return getData($sql);
-}
 
 function allSubjects()
 {
 	$sql = "SELECT * FROM `subjects` ORDER BY subjects.id ";
+
+	return getData($sql);
+}
+
+function getStudents()
+{
+	$sql = "SELECT students.id, students.name, students.surname, groups.id as 'group_id', groups.specialty
+			FROM `students` 
+			JOIN `groups` ON students.group_id=groups.id ORDER BY students.id";
 
 	return getData($sql);
 }
@@ -63,6 +62,4 @@ function ratingGroupStudents($group)
 
 	return getData($sql);
 }
-
-
 
