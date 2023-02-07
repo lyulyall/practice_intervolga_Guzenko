@@ -6,26 +6,23 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/practice_intervolga/php/db.php';
 $subjectsList = GradesTable::getItemsFromDBTable('subjects');
 $studentsList = GradesTable::getItemsFromDBTable('students');
 GradesTable::addGrade();
-GradesTable::changeGrade();
 ?>
 
 <!--Оценки-->
 <div class="container main">
-
-    <!-- Button trigger modal -->
     <div class="row mt-3">
         <div class="col-12 center">
             <button type="button" class="btn btn-success" data-toggle="modal" data-target="#exampleModal">+</button>
         </div>
     </div>
 
-    <!-- Modal -->
+    <!-- Добавление оценок -->
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <form method="post">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Добавить студента</h5>
+                        <h5 class="modal-title" id="exampleModalLabel">Выставить баллы</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
@@ -58,13 +55,13 @@ GradesTable::changeGrade();
 
     <?php $gradesList=grades(); ?>
 	<?php if (count($gradesList) > 0): ?>
-		<table class="table table-striped table-bordered table-sm">
+		<table class="table table-bordered table-sm">
 			<thead>
 			<tr>
                 <th scope="col">id</th>
 				<th scope="col">Cтуденты</th>
 				<th scope="col">Предмет</th>
-				<th scope="col">Баллы</th>
+				<th scope="col"'">Баллы</th>
                 <th scope="col">Действия</th>
 			</tr>
 			</thead>
@@ -73,7 +70,7 @@ GradesTable::changeGrade();
 			<tr class="small_top_margin">
 				<?php foreach ($gradesList as $item): ?>
 			        <tr>
-                        <td><?= $item['student_id']?></td>
+                        <td><?= $item['id']?></td>
 				        <td><?= $item['surname'],' ', $item['name']?></td>
 				        <td> <?= $item['subject']?> </td>
 				        <td><?= $item['grade']?></td>
@@ -96,21 +93,20 @@ GradesTable::changeGrade();
                                         </button>
                                     </div>
                                     <div class="modal-body">
-                                        <label for="grade" class="form-label">Оценка</label>
-                                        <input type="text" class="form-control" id="grade" name="grade"
-                                               value="<?=$item['grade']?>">
+                                        <label for="grade" class="form-label">Баллы:</label>
+                                        <input type="text" class="form-control" name="grade" id="grade" value="<?=$item['grade']?>">
 
-                                        <label for="subjectId" class="form-label">Выберите предмет: </label>
-                                        <select required name="subjectId" class="form-select">
-                                            <option value="<?= $item['subject_id'] ?>"> <?= $item['subject']?> </option>
-                                            <?php foreach ($subjectsList as $item): ?>
+
+                                        <select required name="groupId" class="form-select top" >
+                                            <option value="<?= $item['subject_id'] ?>">Выберите другой предмет, если необходимо</option>
+											<?php foreach ($subjectsList as $item): ?>
                                                 <option value="<?= $item['id'] ?>"> <?= $item['subject_name']?> </option>
 											<?php endforeach; ?>
                                         </select>
-
                                     </div>
+
                                     <div class="modal-footer">
-                                        <button type="submit" class="btn btn-primary" name="saveGrade">Сохранить</button></div>
+                                        <button type="submit" class="btn btn-primary" name="saveStudent">Сохранить</button></div>
                                 </div>
                             </div>
                         </form>
