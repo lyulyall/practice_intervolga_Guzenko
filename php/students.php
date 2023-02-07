@@ -98,28 +98,13 @@ StudentTable::changeStudent();
                                         <input type="text" class="form-control" id="surname" name="surname"
                                                value="<?=$item['surname']?>">
 
-                                        <label for="groupId" class="form-label">Выберите группу: </label>
-                                        <select id="sel" name="sel" required name="groupId" class="form-select" >
-                                            <option value="<?= $item['group_id'] ?>"> <?= $item['specialty']?> </option>
+                                        <select name="groupId" class="form-select top" >
+                                            <option value="<?= $item['group_id'] ?>">Выберите другую группу, если это необходимо</option>
                                             <?php foreach ($groupList as $item): ?>
                                                 <option value="<?= $item['id'] ?>"> <?= $item['specialty']?> </option>
 											<?php endforeach; ?>
                                         </select>
                                     </div>
-
-                                    <script>
-                                        var opt = new Array();
-                                        ("#sel option").each(function() {
-                                            var f = (this).val();
-                                            var c = .inArray(f,opt);
-                                            if(c == -1){
-                                                opt.push(f);
-                                            }
-                                            else{
-                                                $(this).remove();
-                                            }
-                                        });
-                                    </script>
 
                                     <div class="modal-footer">
                                         <button type="submit" class="btn btn-primary" name="saveStudent">Сохранить</button></div>

@@ -10,8 +10,6 @@ GroupsTable::changeGroups();
 
 <!--Группы-->
 <div class="container main">
-
-    <!-- Button trigger modal -->
     <div class="row mt-3">
         <div class="col-12 center">
             <button type="button" class="btn btn-success" data-toggle="modal" data-target="#add">+</button>
