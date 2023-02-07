@@ -1,18 +1,18 @@
 <?php
-require_once 'header.php';
-require_once 'logic.php';
-require_once 'db.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/practice_intervolga/php/header.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/practice_intervolga/crud/GetLogic.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/practice_intervolga/php/db.php';
 $groups = allData('groups');
 ?>
 
 <!--Рейтинг-->
 <div class="container main">
     <form class="dropdown" method="get">
-        <label for="group">Выберите группу: </label>
-        <select required name="group"  class="form-select">
+        <select name="group" class="form-select" >
+            <option>Выберите группу</option>
             <?php foreach ($groups as $item): ?>
-                <option selected value="<?= $item['id'] ?>"> <?= $item['specialty']?> </option>
-            <?php endforeach; ?>
+                <option value="<?= $item['id'] ?>"> <?= $item['specialty']?> </option>
+			<?php endforeach; ?>
         </select>
         <button type="submit" class="btn btn-primary my-4" name="build">Построить рейтинг</button>
     </form>

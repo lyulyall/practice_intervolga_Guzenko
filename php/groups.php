@@ -1,10 +1,11 @@
 <?php
-include 'header.php';
-require_once 'logic.php';
-require_once 'db.php';
-require_once '../crud/groupsLogic.php';
+include $_SERVER['DOCUMENT_ROOT'] . '/practice_intervolga/php/header.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/practice_intervolga/crud/GetLogic.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/practice_intervolga/php/db.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/practice_intervolga/crud/groupsLogic.php';
 $groupList = GroupsTable::getItemsFromDBTable('groups');
 GroupsTable::addGroups();
+GroupsTable::changeGroups();
 ?>
 
 <!--Группы-->
@@ -13,12 +14,12 @@ GroupsTable::addGroups();
     <!-- Button trigger modal -->
     <div class="row mt-3">
         <div class="col-12 center">
-            <button type="button" class="btn btn-success" data-toggle="modal" data-target="#exampleModal">+</button>
+            <button type="button" class="btn btn-success" data-toggle="modal" data-target="#add">+</button>
         </div>
     </div>
 
-    <!-- Modal -->
-    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <!-- Добавление записи -->
+    <div class="modal fade" id="add" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <form method="post">
             <div class="modal-dialog">
                 <div class="modal-content">
@@ -30,7 +31,7 @@ GroupsTable::addGroups();
                     </div>
                     <div class="modal-body">
                         <label for="specialty" class="form-label">Название</label>
-                        <input type="text" class="form-control" id="specialty" name="specialty" required>
+                        <input type="text" class="form-control" id="specialty" name="specialty">
                     </div>
                     <div class="modal-footer">
                         <button type="submit" class="btn btn-primary" name="addGroups">Добавить</button>
@@ -59,18 +60,42 @@ GroupsTable::addGroups();
                             <td><?=$item['id']?></td>
                             <td><?=$item['specialty']?></td>
                             <td>
-                            <form method="post">
-                                <button type="submit" class="btn btn-primary" name="changeSt"
-                                        value="<?=$item['id']?>">Изменить
-                                </button>
-                            </form>
+                                    <a href='?id=<?=$item['id']?>' type="button" class="btn btn-primary"
+                                            data-toggle="modal" data-target="#change<?=$item['id']?>">Изменить</a>
                             </td>
                         </tr>
+
+                        <!-- Редактирование записи -->
+                        <div class="modal fade" id="change<?=$item['id']?>" tabindex="-1"
+                             aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <form action="?id=<?=$item['id']?>" method="post">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLabel">Изменить группу</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <label for="specialty" class="form-label">Название группы</label>
+                                            <input type="text" class="form-control" id="specialty" name="specialty"
+                                                   value="<?=$item['specialty']?>">
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="submit" class="btn btn-primary" name="saveStudent">Сохранить</button></div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+
 				    <?php endforeach;?>
+
                 </tr>
             </tbody>
         </table>
 	<?php endif;?>
+
 </div>
 
-<?php include 'footer.php'; ?>
+<?php include_once $_SERVER['DOCUMENT_ROOT'] . '/practice_intervolga/php/footer.php'; ?>

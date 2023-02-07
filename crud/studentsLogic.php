@@ -1,5 +1,5 @@
 <?php
-require_once "../php/db.php";
+require_once $_SERVER['DOCUMENT_ROOT'] . '/practice_intervolga/php/db.php';
 class StudentTable
 {
 
@@ -7,12 +7,12 @@ class StudentTable
 	{
 		if (array_key_exists('addStudent', $_POST))
 		{
-			if ( !empty($_POST['name']) && !empty($_POST['surname']) && !empty($_POST['group_id']) )
+			if ( !empty($_POST['name']) && !empty($_POST['surname']) && !empty($_POST['groupId']) )
 			{
 				$serv['name'] = htmlspecialchars($_POST['name']);
 				$serv['surname'] = htmlspecialchars($_POST['surname']);
-				$serv['group_id'] = htmlspecialchars($_POST['group_id']);
-				$sql = "INSERT INTO `students` (`surname`, `name`, `group_id`) VALUES (:surname, :name, :group_id)";
+				$serv['groupId'] = htmlspecialchars($_POST['groupId']);
+				$sql = "INSERT INTO `students` (`surname`, `name`, `group_id`) VALUES (:surname, :name, :groupId)";
 				$pdo = dbconnect();
 				$stmt = $pdo->prepare($sql);
 				$stmt->execute($serv);
@@ -24,6 +24,32 @@ class StudentTable
 			}
 		}
 	}
+
+	public static function changeStudent()
+	{
+		if (array_key_exists('saveStudent', $_POST))
+		{
+			if ( !empty($_POST['name']) && !empty($_POST['surname']) && !empty($_POST['groupId']) )
+			{
+				$serv['id']=$_GET['id'];
+				$serv['name'] = htmlspecialchars($_POST['name']);
+				$serv['surname'] = htmlspecialchars($_POST['surname']);
+				$serv['groupId'] = htmlspecialchars($_POST['groupId']);
+
+				$sql = "UPDATE `students` SET `name`=:name, `surname`=:surname,`group_id`=:groupId WHERE `id`=:id";
+
+				$pdo = dbconnect();
+				$stmt = $pdo->prepare($sql);
+				$stmt->execute($serv);
+				header('Location: /practice_intervolga/php/students.php');
+			}
+			else
+			{
+				echo "<script>alert(\"Ошибка! Поля не должны быть пустые\");</script>";
+			}
+		}
+	}
+
 
 	public static function getItemsFromDBTable($table)
 	{

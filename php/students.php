@@ -1,11 +1,12 @@
 <?php
-require_once '../crud/studentsLogic.php';
-require_once 'header.php';
-require_once 'logic.php';
-require_once 'db.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/practice_intervolga/crud/studentsLogic.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/practice_intervolga/php/header.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/practice_intervolga/crud/GetLogic.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/practice_intervolga/php/db.php';
 $groupList = StudentTable::getItemsFromDBTable('groups');
-$studentsList = StudentTable::getItemsFromDBTable('students');
+$studentsList=getStudents();
 StudentTable::addStudent();
+StudentTable::changeStudent();
 ?>
 
  <!--Студенты-->
@@ -36,8 +37,8 @@ StudentTable::addStudent();
                         <label for="surname" class="form-label">Фамилия: </label>
                         <input type="text" class="form-control"  name="surname" id="surname">
 
-                        <select required name="group_id" class="form-select">
-                            <option>Выберите группу</option>
+                        <label for="groupId" class="form-label">Выберите группу: </label>
+                        <select required name="groupId" class="form-select">
 							<?php foreach ($groupList as $item): ?>
                                 <option value="<?= $item['id'] ?>"> <?= $item['specialty']?> </option>
 							<?php endforeach; ?>
@@ -53,29 +54,81 @@ StudentTable::addStudent();
 
 
 	<?php if (count($studentsList) > 0):?>
-        <table class="table table-sm table-bordered tableSt">
+        <table class="table table-sm table-bordered table-striped tableSt">
+            <thead>
             <tr>
                 <th scope="col">id</th>
                 <th scope="col">Студенты</th>
+                <th scope="col">Группа</th>
                 <th scope="col">Действия</th>
             </tr>
+            </thead>
 
+            <tbody>
             <tr>
 				<?php foreach ($studentsList as $item):?>
                     <tr>
                         <td><?=$item['id']?></td>
                         <td><?=$item['surname']?> <?=$item['name']?></td>
+                        <td><?=$item['specialty']?></td>
+
                         <td>
-                            <form method="post">
-                                <button type="submit" class="btn btn-primary" name="changeSt" value="<?=$item['id']?>">
-                                    Изменить
-                                </button>
-                            </form>
+                            <a href='?id=<?=$item['id']?>' type="button" class="btn btn-primary"
+                               data-toggle="modal" data-target="#change<?=$item['id']?>">Изменить</a>
                         </td>
                     </tr>
+
+                    <!-- Редактирование записи -->
+                    <div class="modal fade" id="change<?=$item['id']?>" tabindex="-1"
+                         aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <form action="?id=<?=$item['id']?>" method="post">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">Редактировать студента</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <label for="name" class="form-label">Имя:</label>
+                                        <input type="text" class="form-control" name="name" id="name" value="<?=$item['name']?>">
+
+                                        <label for="surname" class="form-label">Фамилия</label>
+                                        <input type="text" class="form-control" id="surname" name="surname"
+                                               value="<?=$item['surname']?>">
+
+                                        <label for="groupId" class="form-label">Выберите группу: </label>
+                                        <select id="sel" name="sel" required name="groupId" class="form-select" >
+                                            <option value="<?= $item['group_id'] ?>"> <?= $item['specialty']?> </option>
+                                            <?php foreach ($groupList as $item): ?>
+                                                <option value="<?= $item['id'] ?>"> <?= $item['specialty']?> </option>
+											<?php endforeach; ?>
+                                        </select>
+                                    </div>
+
+                                    <script>
+                                        var opt = new Array();
+                                        ("#sel option").each(function() {
+                                            var f = (this).val();
+                                            var c = .inArray(f,opt);
+                                            if(c == -1){
+                                                opt.push(f);
+                                            }
+                                            else{
+                                                $(this).remove();
+                                            }
+                                        });
+                                    </script>
+
+                                    <div class="modal-footer">
+                                        <button type="submit" class="btn btn-primary" name="saveStudent">Сохранить</button></div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
 				<?php endforeach;?>
             </tr>
-
             </tbody>
         </table>
 	<?php endif;?>
