@@ -3,7 +3,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/practice_intervolga/crud/subjectsLogi
 include_once $_SERVER['DOCUMENT_ROOT'] . '/practice_intervolga/php/header.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . '/practice_intervolga/crud/GetLogic.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . '/practice_intervolga/php/db.php';
-$subjectsList = SubjectsTable::getItemsFromDBTable('subjects');
+$subjectsList =getItemsFromDBTable('subjects');
 SubjectsTable::addSubject();
 SubjectsTable::changeSubject();
 ?>

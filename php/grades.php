@@ -3,9 +3,10 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/practice_intervolga/php/header.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . '/practice_intervolga/crud/gradesLogic.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . '/practice_intervolga/crud/GetLogic.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . '/practice_intervolga/php/db.php';
-$subjectsList = GradesTable::getItemsFromDBTable('subjects');
-$studentsList = GradesTable::getItemsFromDBTable('students');
+$subjectsList = getItemsFromDBTable('subjects');
+$studentsList = getItemsFromDBTable('students');
 GradesTable::addGrade();
+GradesTable::changeGrade();
 ?>
 
 <!--Оценки-->
@@ -53,7 +54,7 @@ GradesTable::addGrade();
         </form>
     </div>
 
-    <?php $gradesList=grades(); ?>
+    <?php $gradesList=getGrades(); ?>
 	<?php if (count($gradesList) > 0): ?>
 		<table class="table table-bordered table-sm">
 			<thead>
@@ -97,16 +98,20 @@ GradesTable::addGrade();
                                         <input type="text" class="form-control" name="grade" id="grade" value="<?=$item['grade']?>">
 
 
-                                        <select required name="groupId" class="form-select top" >
-                                            <option value="<?= $item['subject_id'] ?>">Выберите другой предмет, если необходимо</option>
-											<?php foreach ($subjectsList as $item): ?>
-                                                <option value="<?= $item['id'] ?>"> <?= $item['subject_name']?> </option>
+                                        <select required name="subjectId" class="form-select top" >
+                                            <option value="<?= $item['subject_id'] ?>"><?= $item['subject']?> </option>
+											<?php foreach ($subjectsList as $subject): ?>
+                                                <?php if ($subject['id'] === $item['subject_id']): ?>
+                                                    <?php continue; ?>
+                                                <?php else: ?>
+                                                <option value="<?= $subject['id'] ?>"> <?= $subject['subject_name']?> </option>
+												<?php endif; ?>
 											<?php endforeach; ?>
                                         </select>
                                     </div>
 
                                     <div class="modal-footer">
-                                        <button type="submit" class="btn btn-primary" name="saveStudent">Сохранить</button></div>
+                                        <button type="submit" class="btn btn-primary" name="saveGrade">Сохранить</button></div>
                                 </div>
                             </div>
                         </form>

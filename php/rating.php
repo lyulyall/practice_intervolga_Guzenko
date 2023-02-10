@@ -9,9 +9,19 @@ $groups = allData('groups');
 <div class="container main">
     <form class="dropdown" method="get">
         <select name="group" class="form-select" >
-            <option>Выберите группу</option>
+            <option>
+				<?php if (isset($_GET['group'])):
+                    echo getGroup($_GET['group'])[0]['specialty']?>
+                <?php else: ?>
+                Выберите группу
+				<?php endif; ?>
+            </option>
             <?php foreach ($groups as $item): ?>
-                <option value="<?= $item['id'] ?>"> <?= $item['specialty']?> </option>
+				<?php if ($item['id'] === $_GET['group']): ?>
+					<?php continue; ?>
+				<?php else: ?>
+                    <option value="<?= $item['id'] ?>"> <?= $item['specialty']?> </option>
+				<?php endif; ?>
 			<?php endforeach; ?>
         </select>
         <button type="submit" class="btn btn-primary my-4" name="build">Построить рейтинг</button>

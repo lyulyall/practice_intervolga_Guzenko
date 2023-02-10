@@ -3,7 +3,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/practice_intervolga/crud/studentsLogi
 require_once $_SERVER['DOCUMENT_ROOT'] . '/practice_intervolga/php/header.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . '/practice_intervolga/crud/GetLogic.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . '/practice_intervolga/php/db.php';
-$groupList = StudentTable::getItemsFromDBTable('groups');
+$groupList = getItemsFromDBTable('groups');
 $studentsList=getStudents();
 StudentTable::addStudent();
 StudentTable::changeStudent();
@@ -99,10 +99,15 @@ StudentTable::changeStudent();
                                                value="<?=$item['surname']?>">
 
                                         <select name="groupId" class="form-select top" >
-                                            <option value="<?= $item['group_id'] ?>">Выберите другую группу, если это необходимо</option>
-                                            <?php foreach ($groupList as $item): ?>
-                                                <option value="<?= $item['id'] ?>"> <?= $item['specialty']?> </option>
+                                            <option value="<?= $item['group_id'] ?>"><?= $item['specialty']?> </option>
+											<?php foreach ($groupList as $group): ?>
+												<?php if ($group['id'] === $item['group_id']): ?>
+													<?php continue; ?>
+												<?php else: ?>
+                                                    <option value="<?= $group['id'] ?>"> <?= $group['specialty']?> </option>
+												<?php endif; ?>
 											<?php endforeach; ?>
+
                                         </select>
                                     </div>
 

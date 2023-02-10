@@ -49,13 +49,5 @@ class GradesTable
 			}
 		}
 	}
-
-	public static function getItemsFromDBTable($table)
-	{
-		$sql = "SELECT * FROM $table";
-
-		return getData($sql);
-	}
-
 }
 ?>

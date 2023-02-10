@@ -1,5 +1,6 @@
 <?php
 require_once $_SERVER['DOCUMENT_ROOT'] . '/practice_intervolga/php/db.php';
+
 class StudentTable
 {
 
@@ -48,14 +49,6 @@ class StudentTable
 				echo "<script>alert(\"Ошибка! Поля не должны быть пустые\");</script>";
 			}
 		}
-	}
-
-
-	public static function getItemsFromDBTable($table)
-	{
-		$sql = "SELECT * FROM $table";
-
-		return getData($sql);
 	}
 
 }
