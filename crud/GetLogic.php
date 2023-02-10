@@ -1,5 +1,5 @@
 <?php
-require_once 'db.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/practice_intervolga/php/db.php';
 
 function query($sql, $params = [])
 {
@@ -9,7 +9,7 @@ function query($sql, $params = [])
 	return $stmt -> fetchAll(PDO::FETCH_ASSOC);
 }
 
-function getGrades()
+function getAllGrades()
 {
 	$sql = "SELECT grades.id, grades.grade, subjects.id as 'subject_id', subjects.subject_name as 'subject', 
 			students.surname, students.id as 'student_id', students.name
@@ -29,7 +29,7 @@ function getItemsFromDBTable($table)
 }
 
 
-function allSubjects()
+function getAllSubjects()
 {
 	$sql = "SELECT * FROM `subjects` ORDER BY subjects.id ";
 
@@ -45,7 +45,7 @@ function getStudents()
 	return query($sql, []);
 }
 
-function allData($table)
+function getAllData($table)
 {
 	if($table == 'students' || $table == 'subjects' || $table == 'grades' || $table == 'groups')
 	{
@@ -61,16 +61,6 @@ function getGroup($id)
 	return query($sql, [$id]);
 }
 
-function ratingGroupGrades($stud_id, $group)
-{
-	$sql = "SELECT grades.grade, subjects.subject_name as 'subject',  students.id, students.name, students.surname
-    FROM `grades`
-    JOIN `subjects` ON grades.subject_id=subjects.id JOIN `students` ON grades.student_id=students.id
-    WHERE students.group_id=? AND grades.student_id=? 
- 	ORDER BY students.id, subjects.id";
-
-	return query($sql, [$group, $stud_id]);
-}
 
 function ratingGroupStudents($group)
 {
@@ -79,3 +69,12 @@ function ratingGroupStudents($group)
 	return query($sql, [$group]);
 }
 
+
+function getGrade($stud_id, $subj_id)
+{
+	$sql = "SELECT grades.grade
+    FROM `grades`
+    WHERE grades.student_id=? AND grades.subject_id=?";
+
+	return query($sql, [$stud_id, $subj_id]);
+}

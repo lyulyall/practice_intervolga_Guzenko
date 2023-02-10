@@ -1,20 +1,19 @@
 <?php
 require_once $_SERVER['DOCUMENT_ROOT'] . '/practice_intervolga/php/header.php';
-require_once $_SERVER['DOCUMENT_ROOT'] . '/practice_intervolga/crud/GetLogic.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/practice_intervolga/crud/getLogic.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . '/practice_intervolga/php/db.php';
-$groups = allData('groups');
+$groups = getAllData('groups');
 ?>
 
 <!--Рейтинг-->
 <div class="container main">
     <form class="dropdown" method="get">
-        <select name="group" class="form-select" >
-            <option>
-				<?php if (isset($_GET['group'])):
-                    echo getGroup($_GET['group'])[0]['specialty']?>
-                <?php else: ?>
-                Выберите группу
-				<?php endif; ?>
+        <select name="group" class="form-select" required>
+            <option value="<?php if (isset($_GET['group'])) echo $_GET['group']?>">
+				<?php if (isset($_GET['group']))
+                    echo getGroup($_GET['group'])[0]['specialty'];
+                    else
+                        echo "Выберите группу"; ?>
             </option>
             <?php foreach ($groups as $item): ?>
 				<?php if ($item['id'] === $_GET['group']): ?>
@@ -35,9 +34,9 @@ $groups = allData('groups');
                 <thead>
                 <tr>
                     <th class="scope">Cтуденты</th>
-				    <?php $subjects=allSubjects(); ?>
+				    <?php $subjects=getAllSubjects(); $i=0; ?>
 				    <?php foreach ($subjects as $subj): ?>
-                        <th> <?= $subj['subject_name']?> </th>
+                        <th> <?= $subj['subject_name']; $th_subj[$i] = $subj['id']; $i++;?> </th>
 				    <?php endforeach; ?>
                 </tr>
                 </thead>
@@ -45,11 +44,14 @@ $groups = allData('groups');
                 <tbody>
 				<?php foreach ($students as $stud): ?>
                     <tr>
-						<?php $rating=ratingGroupGrades($stud['id'], $_GET['group']); ?>
                         <th> <?= $stud['surname']?> <?= $stud['name']?></th>
-						<?php foreach ($rating as $rat): ?>
-                            <td> <?=$rat['grade']?></td>
-						<?php endforeach; ?>
+                        <?php for ($j = 0; $j<$i; $j++): ?>
+                        <?php if (getGrade($stud['id'], $th_subj[$j])!=[]): ?>
+                                <td> <?=getGrade($stud['id'], $th_subj[$j])[0]['grade']?></td>
+							<?php else: ?>
+                                <td> <?='-'?></td>
+							<?php endif; ?>
+                        <?php endfor; ?>
                     </tr>
 				<?php endforeach; ?>
                 </tbody>

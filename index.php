@@ -1,16 +1,16 @@
 <?php
-include 'php/header.php';
+include_once $_SERVER['DOCUMENT_ROOT'] . '/practice_intervolga/php/header.php';
 ?>
 
 <body>
 
-<div class="container main">
+<main class="container main">
 
     <div> Структура базы данных:</div>
 
     <div>
         <a><img src="/practice_intervolga/img/bd.png" class="center"></a>
     </div>
-</div>
+</main>
 
 <?php include 'php/footer.php';?>

@@ -1,6 +1,6 @@
 <?php
 include $_SERVER['DOCUMENT_ROOT'] . '/practice_intervolga/php/header.php';
-require_once $_SERVER['DOCUMENT_ROOT'] . '/practice_intervolga/crud/GetLogic.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/practice_intervolga/crud/getLogic.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . '/practice_intervolga/php/db.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . '/practice_intervolga/crud/groupsLogic.php';
 $groupList =getItemsFromDBTable('groups');

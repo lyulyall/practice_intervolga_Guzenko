@@ -1,7 +1,7 @@
 <?php
 include_once $_SERVER['DOCUMENT_ROOT'] . '/practice_intervolga/php/header.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . '/practice_intervolga/crud/gradesLogic.php';
-require_once $_SERVER['DOCUMENT_ROOT'] . '/practice_intervolga/crud/GetLogic.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/practice_intervolga/crud/getLogic.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . '/practice_intervolga/php/db.php';
 $subjectsList = getItemsFromDBTable('subjects');
 $studentsList = getItemsFromDBTable('students');
@@ -54,7 +54,7 @@ GradesTable::changeGrade();
         </form>
     </div>
 
-    <?php $gradesList=getGrades(); ?>
+    <?php $gradesList=getAllGrades(); ?>
 	<?php if (count($gradesList) > 0): ?>
 		<table class="table table-bordered table-sm">
 			<thead>

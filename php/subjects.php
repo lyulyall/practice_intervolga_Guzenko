@@ -1,7 +1,7 @@
 <?php
 require_once $_SERVER['DOCUMENT_ROOT'] . '/practice_intervolga/crud/subjectsLogic.php';
 include_once $_SERVER['DOCUMENT_ROOT'] . '/practice_intervolga/php/header.php';
-require_once $_SERVER['DOCUMENT_ROOT'] . '/practice_intervolga/crud/GetLogic.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/practice_intervolga/crud/getLogic.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . '/practice_intervolga/php/db.php';
 $subjectsList =getItemsFromDBTable('subjects');
 SubjectsTable::addSubject();
