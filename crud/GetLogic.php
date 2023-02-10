@@ -1,7 +1,7 @@
 <?php
 require_once 'db.php';
 
-function getData($sql, $params = [])
+function query($sql, $params = [])
 {
 	$pdo = dbconnect();
 	$stmt = $pdo -> prepare($sql);
@@ -16,7 +16,7 @@ function getGrades()
     		FROM `grades`
     		JOIN `subjects` ON grades.subject_id=subjects.id JOIN `students` ON grades.student_id=students.id";
 
-	return getData($sql, []);
+	return query($sql, []);
 }
 
 function getItemsFromDBTable($table)
@@ -24,7 +24,7 @@ function getItemsFromDBTable($table)
 	if($table == 'students' || $table == 'subjects' || $table == 'grades' || $table == 'groups')
 	{
 		$sql = "SELECT * FROM $table";
-		return getData($sql, []);
+		return query($sql, []);
 	}
 }
 
@@ -33,7 +33,7 @@ function allSubjects()
 {
 	$sql = "SELECT * FROM `subjects` ORDER BY subjects.id ";
 
-	return getData($sql, []);
+	return query($sql, []);
 }
 
 function getStudents()
@@ -42,7 +42,7 @@ function getStudents()
 			FROM `students` 
 			JOIN `groups` ON students.group_id=groups.id ORDER BY students.id";
 
-	return getData($sql, []);
+	return query($sql, []);
 }
 
 function allData($table)
@@ -50,7 +50,7 @@ function allData($table)
 	if($table == 'students' || $table == 'subjects' || $table == 'grades' || $table == 'groups')
 	{
 		$sql = "SELECT * FROM $table";
-		return getData($sql, []);
+		return query($sql, []);
 	}
 }
 
@@ -58,7 +58,7 @@ function getGroup($id)
 {
 	$sql = "SELECT groups.specialty FROM groups WHERE groups.id=?";
 
-	return getData($sql, [$id]);
+	return query($sql, [$id]);
 }
 
 function ratingGroupGrades($stud_id, $group)
@@ -69,13 +69,13 @@ function ratingGroupGrades($stud_id, $group)
     WHERE students.group_id=? AND grades.student_id=? 
  	ORDER BY students.id, subjects.id";
 
-	return getData($sql, [$group, $stud_id]);
+	return query($sql, [$group, $stud_id]);
 }
 
 function ratingGroupStudents($group)
 {
 	$sql = "SELECT * FROM `students` WHERE students.group_id=?";
 
-	return getData($sql, [$group]);
+	return query($sql, [$group]);
 }
 

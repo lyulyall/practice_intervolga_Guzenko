@@ -12,9 +12,7 @@ class SubjectsTable
 				$serv['subjectName'] = htmlspecialchars($_POST['subjectName']);
 				$sql = "INSERT INTO `subjects` (`subject_name`) VALUES (:subjectName)";
 
-				$pdo = dbconnect();
-				$stmt = $pdo->prepare($sql);
-				$stmt->execute($serv);
+				query($sql, $serv);
 				header('Location: /practice_intervolga/php/subjects.php');
 			}
 			else
@@ -35,9 +33,7 @@ class SubjectsTable
 
 				$sql = "UPDATE `subjects` SET `subject_name`=:subject_name WHERE `id`=:id";
 
-				$pdo = dbconnect();
-				$stmt = $pdo->prepare($sql);
-				$stmt->execute($serv);
+				query($sql, $serv);
 				header('Location: /practice_intervolga/php/subjects.php');
 			}
 			else

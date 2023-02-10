@@ -14,9 +14,8 @@ class StudentTable
 				$serv['surname'] = htmlspecialchars($_POST['surname']);
 				$serv['groupId'] = htmlspecialchars($_POST['groupId']);
 				$sql = "INSERT INTO `students` (`surname`, `name`, `group_id`) VALUES (:surname, :name, :groupId)";
-				$pdo = dbconnect();
-				$stmt = $pdo->prepare($sql);
-				$stmt->execute($serv);
+
+				query($sql, $serv);
 				header('Location: /practice_intervolga/php/students.php');
 			}
 			else
@@ -39,9 +38,7 @@ class StudentTable
 
 				$sql = "UPDATE `students` SET `name`=:name, `surname`=:surname,`group_id`=:groupId WHERE `id`=:id";
 
-				$pdo = dbconnect();
-				$stmt = $pdo->prepare($sql);
-				$stmt->execute($serv);
+				query($sql, $serv);
 				header('Location: /practice_intervolga/php/students.php');
 			}
 			else

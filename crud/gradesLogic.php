@@ -14,9 +14,7 @@ class GradesTable
 				$serv['studentId'] = htmlspecialchars($_POST['studentId']);
 				$sql = "INSERT INTO `grades` (`grade`, `subject_id`, `student_id`) VALUES (:grade, :subjectId, :studentId)";
 
-				$pdo = dbconnect();
-				$stmt = $pdo->prepare($sql);
-				$stmt->execute($serv);
+				query($sql, $serv);
 				header('Location: /practice_intervolga/php/grades.php');
 			}
 			else
@@ -38,9 +36,7 @@ class GradesTable
 
 				$sql = "UPDATE `grades` SET `grade`=:grade,`subject_id`=:subjectId WHERE `id`=:id";
 
-				$pdo = dbconnect();
-				$stmt = $pdo->prepare($sql);
-				$stmt->execute($serv);
+				query($sql, $serv);
 				header('Location: /practice_intervolga/php/grades.php');
 			}
 			else

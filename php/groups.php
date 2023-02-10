@@ -81,7 +81,7 @@ GroupsTable::changeGroups();
                                                    value="<?=$item['specialty']?>">
                                         </div>
                                         <div class="modal-footer">
-                                            <button type="submit" class="btn btn-primary" name="saveStudent">Сохранить</button></div>
+                                            <button type="submit" class="btn btn-primary" name="saveGroups">Сохранить</button></div>
                                     </div>
                                 </div>
                             </form>

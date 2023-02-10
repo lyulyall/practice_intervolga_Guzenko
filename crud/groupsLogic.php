@@ -12,9 +12,7 @@ class GroupsTable
 				$serv['specialty'] = htmlspecialchars($_POST['specialty']);
 				$sql = "INSERT INTO `groups` (`specialty`) VALUES (:specialty)";
 
-				$pdo = dbconnect();
-				$stmt = $pdo->prepare($sql);
-				$stmt->execute($serv);
+				query($sql, $serv);
 				header('Location: /practice_intervolga/php/groups.php');
 			}
 			else
@@ -26,7 +24,7 @@ class GroupsTable
 
 	public static function changeGroups()
 	{
-		if (array_key_exists('saveStudent', $_POST))
+		if (array_key_exists('saveGroups', $_POST))
 		{
 			if ( !empty($_POST['specialty']))
 			{
@@ -35,9 +33,7 @@ class GroupsTable
 
 				$sql = "UPDATE `groups` SET `specialty`=:specialty WHERE `id`=:id";
 
-				$pdo = dbconnect();
-				$stmt = $pdo->prepare($sql);
-				$stmt->execute($serv);
+				query($sql, $serv);
 				header('Location: /practice_intervolga/php/groups.php');
 			}
 			else
